@@ -17,7 +17,6 @@ import {
   take,
   tap,
 } from 'rxjs'
-import { ApiService } from '../app/lib/apps/src/lib/service/api.service'
 import { HttpClient } from '@angular/common/http'
 
 @Component({
@@ -26,10 +25,9 @@ import { HttpClient } from '@angular/common/http'
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent implements OnInit {
-  c(d) {
-    console.log(d)
-  }
-  constructor(private http: HttpClient, private ApiService: ApiService) {}
+  
+  constructor(private http: HttpClient) {}
+  
   ngOnInit(): void {
     let observableConcatMap$ = of(1, 2, 3, 4).pipe(
       tap(()=> this.c('concatMap')),
@@ -82,5 +80,9 @@ export class AppComponent implements OnInit {
     observableExhaustMap$.subscribe((val) => {
       console.log('exhaustMap DOID =', val[0]['do_id'])
     })
+  }
+
+  c(d) {
+    console.log(d)
   }
 }
