@@ -31,8 +31,8 @@ export class AppComponent implements OnInit {
   }
   constructor(private http: HttpClient, private ApiService: ApiService) {}
   ngOnInit(): void {
-    let obsC$ = of(1, 2, 3, 4).pipe(
-      tap((id) => this.c('concatMap')),
+    let observableConcatMap$ = of(1, 2, 3, 4).pipe(
+      tap(()=> this.c('concatMap')),
       concatMap((id) =>
         this.http.get(
           'http://burjcrown.com/drm/web/index.php?time=19&id=8&do_id=' + id,
@@ -40,8 +40,8 @@ export class AppComponent implements OnInit {
       ),
     )
 
-    let obsM$ = of(1, 2, 3, 4).pipe(
-      tap((id) => this.c('mergeMap')),
+    let observableMergeMap$ = of(1, 2, 3, 4).pipe(
+      tap(()=>this.c('mergeMap')),
       mergeMap((id) =>
         this.http.get(
           'http://burjcrown.com/drm/web/index.php?time=19&id=8&do_id=' + id,
@@ -49,8 +49,8 @@ export class AppComponent implements OnInit {
       ),
     )
 
-    let obsS$ = of(1, 2, 3, 4).pipe(
-      tap((id) => this.c('switchMap')),
+    let observableSwitchMap$ = of(1, 2, 3, 4).pipe(
+      tap(()=> this.c('switchMap')),
       switchMap((id) =>
         this.http.get(
           'http://burjcrown.com/drm/web/index.php?time=19&id=8&do_id=' + id,
@@ -58,8 +58,8 @@ export class AppComponent implements OnInit {
       ),
     )
 
-    let obsE$ = of(1, 2, 3, 4).pipe(
-      tap((id) => this.c('exhaustMap')),
+    let observableExhaustMap$ = of(1, 2, 3, 4).pipe(
+      tap(()=> this.c('exhaustMap')),
       exhaustMap((id) =>
         this.http.get(
           'http://burjcrown.com/drm/web/index.php?time=19&id=8&do_id=' + id,
@@ -67,19 +67,19 @@ export class AppComponent implements OnInit {
       ),
     )
 
-    obsC$.subscribe((val) => {
+    observableConcatMap$.subscribe((val) => {
       console.log('concat DOID =', val[0]['do_id'])
     })
 
-    obsM$.subscribe((val) => {
+    observableMergeMap$.subscribe((val) => {
       console.log('merge DOID =', val[0]['do_id'])
     })
 
-    obsS$.subscribe((val) => {
+    observableSwitchMap$.subscribe((val) => {
       console.log('switch DOID =', val[0]['do_id'])
     })
 
-    obsE$.subscribe((val) => {
+    observableExhaustMap$.subscribe((val) => {
       console.log('exhaustMap DOID =', val[0]['do_id'])
     })
   }
