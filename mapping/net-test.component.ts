@@ -1,9 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core'
-/*import { DEVICE_TYPE_IS_PC } from './app.module'
-import { globals } from '@bc/global-variables'
-import { LocalStorageService } from '@services/local-storage.service'
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core'*/
 import {
   concatMap,
   debounceTime,
